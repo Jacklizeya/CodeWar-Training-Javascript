@@ -1,0 +1,70 @@
+
+  function between1and9(i) { 
+  if (i === 1) {return "one"}
+  else if (i === 2) {return "two"}
+  else if (i === 3) {return "three"}
+  else if (i === 4) {return "four"}
+  else if (i === 5) {return "five"}
+  else if (i === 6) {return "six"}
+  else if (i === 7) {return "seven"}
+  else if (i === 8) {return "eight"}
+  else if (i === 9 ) {return "nine"}
+  else {return ""}
+  }
+  
+  function between10and99(i) {
+      if (i === 10) {return "ten"}
+      else if (i === 11) {return "eleven"}
+      else if (i === 12) {return "twelve"}
+      else if (i === 13) {return "thirteen"}
+      else if (i === 14) {return "fourteen"}
+      else if (i === 15) {return "fifteen"}
+      else if (i === 16) {return "sixteen"}
+      else if (i === 17) {return "seventeen"}
+      else if (i === 18) {return "eighteen"}
+      else if (i === 19) {return "nineteen"}
+      else if (i === 20) {return "twenty"}
+      else if (i === 30) {return "thirty"}
+      else if (i === 40) {return "forty"}
+      else if (i === 50) {return "fifty"}
+      else if (i === 60) {return "sixty"}
+      else if (i === 70) {return "seventy"}
+      else if (i === 80) {return "eighty"}
+      else if (i === 90) {return "ninety"}
+      else  { let ten = Math.floor(i/10) * 10; let single = i%10; return  between10and99(ten) + "-"  + between1and9(single)   }
+  }
+  
+  function between100and999 (i) {
+  let hundred = Math.floor(i/100);
+  let rest = i - hundred *100
+  if (rest >=10 & rest <=99) {return between1and9(hundred) + " hundred " + between10and99(rest)} 
+  else if (rest >0 & rest<= 9) {return between1and9(hundred) + " hundred " + between1and9(rest)}
+  else if (rest === 0) {return between1and9(hundred) + " hundred"}  
+  }
+  /*
+  console.log(between1and9(8))
+  */
+  
+  function between1to999 (i) {
+  if (i>=1 & i <= 9) {return between1and9(i)}
+  else if(i>=10 & i<=99) {return between10and99(i)}
+  else {return between100and999(i)}
+  }
+  
+  
+  
+  
+  function between0to999999 (i) 
+  {
+  if (i === 0) {return "zero"}    
+  if (i >= 0 & i<= 999) {return between1to999(i)}
+  else {
+      let firstpart = Math.floor(i/1000); 
+      
+      let secondpart = i - firstpart*1000; 
+     
+      if (secondpart === 0) {return between1to999(firstpart) + " thousand"}
+      else {return between1to999(firstpart) + " thousand " + between1to999(secondpart)}}
+  }
+
+console.log(between0to999999(109))
