@@ -1,0 +1,26 @@
+let a = "470 ohms"
+let b= a.split(" ")[0]
+
+function convertstringtoint(i) {
+if (i.includes("k")) { let number = i.slice(0, i.length-1); return parseFloat(number) * 1000}
+else if (i.includes("M")) {let number = i.slice(0, i.length-1); return parseFloat(number) * 1000000}
+else{return parseInt(i)}
+}
+
+let c = convertstringtoint(b)
+let d = c.toString()
+let first2= d.substring(0,2)
+let zerocount = d.length - 2
+
+
+numberlist = first2.split("")
+
+let dictionary = {0: "black", 1: "brown", 2: "red", 3: "orange", 4: "yellow", 5: "green", 6: "blue", 7: "violet", 8: "gray", 9: "white"}
+
+output =""
+
+numberlist.forEach( (x) => {output += dictionary[x] + " "})
+
+output += dictionary[zerocount] + " gold"
+
+return output
