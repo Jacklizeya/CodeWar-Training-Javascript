@@ -1,0 +1,68 @@
+let carpark = [[0, 2, 0, 0, 1],
+           [0, 0, 0, 0, 1],
+           [0, 0, 0, 0, 1],
+           [0, 0, 0, 0, 0]];
+
+// locate car first
+
+let carlocator = 0
+carpark.forEach( 
+  function locator(x)  { if (x.includes(2)) { carlocator = carpark.findIndex(s => s === x)} }   
+  )
+let result =[]
+let temporarystair = 0   //store this value for next stair
+
+
+if (carpark.length > 1) {
+for (i = carlocator; i < carpark.length; i++) 
+{
+if (i === carlocator & carlocator !== carpark.length-1) { 
+  let start = carpark[i].findIndex(x => x === 2); let end = carpark[i].findIndex(x => x===1); 
+  if (start< end) {result.push("R" + (end-start).toString())} 
+  else if (start > end) {result.push("L" + (start-end).toString())}  
+  result.push("D1")
+  temporarystair = end                     
+}
+
+
+
+// this is the groud level
+else if (i === carpark.length-1) {
+  let start = temporarystair; let end = carpark[i].length - 1; 
+  if (start< end) {result.push("R" + (end-start).toString())} 
+  else if (start > end ){result.push("L" + (start-end).toString())}  
+  }
+
+
+// this is something between ground and top
+else {
+  let start = temporarystair; let end = carpark[i].findIndex(x => x===1); 
+  if (start< end) {result.push("R" + (end-start).toString()); result.push("D1") } 
+  else if (start > end) {result.push("L" + (start-end).toString()); result.push("D1") }
+  else {                                            //if they equal to each other
+    let lastone = result[result.length-1]; 
+    let lastlistformat = lastone.split(""); 
+    lastlistformat[1] = (parseInt(lastlistformat[1]) + 1 ).toString(); 
+    result[result.length-1] = lastlistformat.join("")
+  } 
+   
+  temporarystair = end                 
+
+}
+}
+}
+
+// there is only one floor
+else {let start = carpark[0].findIndex(x => x === 2); let end = carpark[carpark.length-1].length - 1; 
+  if (start < end) {result.push("R" + (end -start).toString())} 
+  
+}
+  
+
+
+
+return result
+
+
+
+console.log(result)
