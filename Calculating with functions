@@ -1,0 +1,47 @@
+/*  Calculating with Functions
+This time we want to write calculations using functions and get the results. Let's have a look at some examples:
+
+seven(times(five())) # must return 35
+four(plus(nine())) # must return 13
+eight(minus(three())) # must return 5
+six(divided_by(two())) # must return 3
+Requirements:
+
+There must be a function for each number from 0 ("zero") to 9 ("nine")
+There must be a function for each of the following mathematical operations: plus, minus, times, dividedBy (divided_by in Ruby and Python)
+Each calculation consist of exactly one operation and two numbers
+The most outer function represents the left operand, the most inner function represents the right operand
+Division should be integer division. For example, this should return 2, not 2.666666...:
+eight(divided_by(three()))
+
+*/
+
+
+let input = "seven(times(five()))"
+let output = input.split("(")
+
+//console.log(output[1], output[0], output[2])
+
+let dict = {
+  title: "mathcalculation",
+  zero() {return 0},
+  one() {return 1},
+  two() {return 2},
+  three() {return 3},
+  four() {return 4},
+  five() {return 5},
+  six() {return 6},
+  seven() {return 7},
+  eight() {return 8},
+  nine() {return 9},
+  
+  plus(a,b) {return a + b},
+  minus(a,b) {return a-b},
+  times(a,b) {console.log(a,b); return a*b},
+  dividedBy(a,b) {return a/b},
+  }
+
+ 
+  s =  dict[output[1]](dict[output[0]](), dict[output[2]]() )
+  
+  console.log(Math.floor(s))
